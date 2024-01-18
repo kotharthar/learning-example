@@ -37,6 +37,8 @@ services:
       NIFI_WEB_HTTPS_PORT: '8443'
       SINGLE_USER_CREDENTIALS_USERNAME: zarla-admin
       SINGLE_USER_CREDENTIALS_PASSWORD: zarla12345678
+    volumes:
+      - ./data:/opt/nifi/data
 
   clickhouse:
     image: clickhouse/clickhouse-server:latest
