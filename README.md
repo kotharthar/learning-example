@@ -31,3 +31,19 @@ Steps
 - Display the data in the OLTP database | Use Superset (Show 1 or 2 example visualization)
 - Decide on ETL Processing example on current data set. Then create a new table in OLAP database and load the data into it. (How to do that from Postgresql to Clickhouse using Nifi)
 - Display the data in the OLAP database | Use Superset (Show 1 or 2 example visualization)
+
+#### How to run environment
+
+- Install `docker` and `docker-compose` on your machine.
+- Go into Week2 folder.
+- Run `docker-compose up -d` to start the environment.
+- Make sure to run the followings to set the `Superset` properly.
+
+```bash
+docker exec -it superset superset fab create-admin \
+              --username zarla \
+              --firstname Zarla \
+              --lastname Admin \
+              --email admin@zarla.com \
+              --password zarla1234
+```

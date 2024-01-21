@@ -39,12 +39,18 @@ services:
       SINGLE_USER_CREDENTIALS_PASSWORD: zarla12345678
     volumes:
       - ./data:/opt/nifi/data
+      - ./jdbc_drivers:/opt/nifi/nifi-current/lib/ext # Mounting JDBC drivers
 
   clickhouse:
     image: clickhouse/clickhouse-server:latest
     user: "101:101"
     container_name: clickhouse
     hostname: clickhouse
+    environment:
+      CLICKHOUSE_DB: e-commerce-db
+      CLICKHOUSE_USER: zarla 
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1 
+      CLICKHOUSE_PASSWORD: zarla1234
     volumes:
       - ${PWD}/fs/volumes/clickhouse/etc/clickhouse-server/config.d/config.xml:/etc/clickhouse-server/config.d/config.xml
       - ${PWD}/fs/volumes/clickhouse/etc/clickhouse-server/users.d/users.xml:/etc/clickhouse-server/users.d/users.xml
@@ -61,6 +67,7 @@ services:
     environment:
       SUPERSET_LOAD_EXAMPLES: "no"
       SUPERSET_SECRET_KEY: hDTxDa1BC/3sEbnuRwHaLNQwVwFOGcKplbvS8xi4dmt6u636dkboDHHy
+      TALISMAN_ENABLED: false
     volumes:
       - ${PWD}/superset_home:/app/superset_home
 
